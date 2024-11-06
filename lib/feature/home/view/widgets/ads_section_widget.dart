@@ -13,21 +13,27 @@ class AdsSectionWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Image.asset("assets/images/smart_phone.jpg"),
-          const Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text('Exclusive deals on electronics!',
-                    style: TextStyle(fontSize: 16)),
-                SizedBox(height: 5),
-                Text('Up to 10% off',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue)),
-              ],
+          Image.asset(
+            "assets/images/smart_phone.jpg",
+          ),
+          const Positioned(
+            right: 10,
+            bottom: 10,
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text('Exclusive deals on electronics!',
+                      style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 5),
+                  Text('Up to 10% off',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue)),
+                ],
+              ),
             ),
           ),
         ],

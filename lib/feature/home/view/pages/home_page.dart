@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:trogon_media_machine_test/feature/home/controller/products_controller.dart';
 import 'package:trogon_media_machine_test/feature/home/view/widgets/ads_section_widget.dart';
 import 'package:trogon_media_machine_test/feature/home/view/widgets/category_section_widget.dart';
 import 'package:trogon_media_machine_test/feature/home/view/widgets/products_list_section_widget.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final productsController = Get.put(ProductsController());
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Explore What You Need',

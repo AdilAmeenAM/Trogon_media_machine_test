@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:trogon_media_machine_test/feature/home/models/product_model.dart';
 import 'package:trogon_media_machine_test/feature/home/view/widgets/user_review_section_widget.dart';
 
 class ProductDetailsPage extends StatelessWidget {
-  const ProductDetailsPage({super.key});
+  final Product product;
+  final String imageUrl;
+
+  const ProductDetailsPage({
+    super.key,
+    required this.product,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,34 +31,37 @@ class ProductDetailsPage extends StatelessWidget {
               // Placeholder for Product Image
               Container(
                 height: 200,
+                clipBehavior: Clip.antiAlias,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Center(
-                  child: Icon(Icons.image, size: 100, color: Colors.grey),
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(height: 16),
 
               // Product Name and Price
-              const Text(
-                'Product Name',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Text(
+                product.name!,
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              const Row(
+              Row(
                 children: [
                   Text(
-                    "\$599.99",
-                    style: TextStyle(
+                    "\$${product.price!}",
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.red),
                   ),
-                  SizedBox(width: 8),
-                  Text(
+                  const SizedBox(width: 8),
+                  const Text(
                     "10% OFF",
                     style: TextStyle(fontSize: 16, color: Colors.green),
                   ),
@@ -59,27 +70,31 @@ class ProductDetailsPage extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Product Description
-              const Text(
-                'Product description goes here. This is a placeholder for the product description.',
-                style: TextStyle(fontSize: 16),
+              Text(
+                product.description!,
+                style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 16),
 
               // Product Rating and Availability
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.star, color: Colors.orange),
-                      SizedBox(width: 4),
+                      const Icon(Icons.star, color: Colors.orange),
+                      const SizedBox(width: 4),
                       Text(
-                        "4.5",
-                        style: TextStyle(fontSize: 16),
+                        (product.reviews!
+                                    .map((reviewItem) => reviewItem.rating ?? 0)
+                                    .fold(0, (item, total) => item + total) /
+                                product.reviews!.length)
+                            .toString(),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
-                  Text(
+                  const Text(
                     "In Stock",
                     style: TextStyle(fontSize: 16, color: Colors.green),
                   ),
@@ -88,15 +103,37 @@ class ProductDetailsPage extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Product Brand and Category
-              const Text(
-                "Brand: BrandX",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              Row(
+                children: [
+                  const Text(
+                    "Brand",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const Spacer(),
+                  Text(
+                    product.brand!,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
-              const Text(
-                "Category: Electronics",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+
+              Row(
+                children: [
+                  const Text(
+                    "Category",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const Spacer(),
+                  Text(
+                    product.category!,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
+
+              const SizedBox(height: 32),
 
               // Customer Reviews
               const Text(
@@ -104,7 +141,9 @@ class ProductDetailsPage extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              const UserReviewsSectionWidget(),
+              UserReviewsSectionWidget(
+                reviews: product.reviews!,
+              ),
             ],
           ),
         ),
