@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trogon_media_machine_test/feature/home/controller/products_controller.dart';
-import 'package:trogon_media_machine_test/feature/home/models/product_model.dart';
 import 'package:trogon_media_machine_test/feature/home/view/widgets/product_item_widget.dart';
 import 'package:get/get.dart';
 
