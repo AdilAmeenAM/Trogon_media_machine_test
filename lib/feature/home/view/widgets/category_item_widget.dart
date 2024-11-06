@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CategoryWidget extends StatelessWidget {
+class CategoryItemWidget extends StatelessWidget {
   final String imageUri;
-  const CategoryWidget({super.key, required this.imageUri});
+  const CategoryItemWidget({super.key, required this.imageUri});
 
   @override
   Widget build(BuildContext context) {

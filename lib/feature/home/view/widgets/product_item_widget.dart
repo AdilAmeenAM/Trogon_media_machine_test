@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ProductWidget extends StatelessWidget {
+class ProductItemWidget extends StatelessWidget {
   final String name;
   final String price;
   final String? oldPrice;
 
-  const ProductWidget(
+  const ProductItemWidget(
       {super.key, required this.name, required this.price, this.oldPrice});
 
   @override
