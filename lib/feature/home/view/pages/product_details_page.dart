@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trogon_media_machine_test/feature/home/view/widgets/user_review_section_widget.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({super.key});
@@ -103,44 +104,7 @@ class ProductDetailsPage extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  itemCount: 2, // Placeholder for number of reviews
-                  itemBuilder: (context, index) {
-                    return Card(
-                      margin: const EdgeInsets.only(bottom: 8.0),
-                      child: ListTile(
-                        leading: Icon(Icons.person, color: Colors.grey[700]),
-                        title: const Text(
-                          "User 1",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: List.generate(
-                                5,
-                                (starIndex) => Icon(
-                                  starIndex < 4
-                                      ? Icons.star
-                                      : Icons.star_border, // Placeholder rating
-                                  color: Colors.orange,
-                                  size: 16,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            const Text(
-                                "This is a placeholder comment for the review."),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              const UserReviewsSectionWidget(),
             ],
           ),
         ),
